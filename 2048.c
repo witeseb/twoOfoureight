@@ -6,7 +6,7 @@
 /*   By: tponark <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 14:49:10 by tponark           #+#    #+#             */
-/*   Updated: 2022/09/24 15:23:48 by tponark          ###   ########.fr       */
+/*   Updated: 2022/09/25 03:31:31 by tponark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,17 +122,13 @@ void	ft_grid_input(int grid[4][4])
 	}
 }
 
-int	main(void)
+void	ft_print_grid(int grid[4][4])
 {
-	int		i;
-	int		j;
-	char	str[100];
-	int		grid[4][4];
-	int		result[4][4];
-	char	**sequence;
+	int	i;
+	int	j;
 
-	ft_grid_input(grid);
-	//printing stuffs
+	i = 0;
+	j = 0;
 	printf("\033[1;35m");
 	printf("\nThe grid :\n");
 	printf("\033[0m");
@@ -148,19 +144,42 @@ int	main(void)
 		printf("\n");
 		i++;
 	}
+}
 
-	//inputting moving sequences
-	printf("\nPlease input your move sequence : ");
+void	ft_print_sequence(char **sequence)
+{
+	int	i;
+
 	i = 0;
-	fgets(str, STR_SIZE, stdin);
-	str[strcspn(str, "\n")] = 0;
-	//scanf("%s\n", str);
-	sequence = ft_split(str, ' ');
 	while (sequence[i])
 	{
-		printf("%s, \n", sequence[i]);
+		printf("%s", sequence[i]);
+		if (sequence[i + 1])
+			printf(", ");
 		i++;
 	}
+}
 
+int ft_move_down(int grid[4][4],
+
+int	main(void)
+{
+	int		i;
+	int		j;
+	char	str[100];
+	int		grid[4][4];
+	int		result[4][4];
+	char	**sequence;
+
+	i = 0;
+	ft_grid_input(grid);
+	ft_print_grid(grid);
+	printf("\nPlease input your move sequence : ");
+	fgets(str, STR_SIZE, stdin);
+	str[strcspn(str, "\n")] = 0;
+	sequence = ft_split(str, ' ');
+	ft_print_sequence(sequence);
+
+	printf("\n");
 	return (0);
 }
